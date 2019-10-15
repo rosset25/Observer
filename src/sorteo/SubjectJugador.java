@@ -1,6 +1,6 @@
 package sorteo;
 
-public interface Subject {
+public interface SubjectJugador {
 	
 	public void registerObserver(ObserverLoteriaPrimitiva o);
 	public void removeObserver(ObserverLoteriaPrimitiva o);

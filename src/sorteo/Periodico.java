@@ -5,13 +5,12 @@ import java.util.List;
 
 public class Periodico implements ObserverJugador, ObserverLoteriaPrimitiva {
 	private ArrayList<Integer> combGandora;
-	private int numeroAcertantes;
+	private int[] acertantes;
 	
 	
 	public Periodico() {
-		this.numeroAcertantes = 0;
 		this.combGandora = new ArrayList<Integer>();
-		
+		this.acertantes = new int[4];
 	}
 
 	
@@ -20,14 +19,32 @@ public class Periodico implements ObserverJugador, ObserverLoteriaPrimitiva {
 		this.combGandora = (ArrayList<Integer>) combinacionGanadora;
 	}
 
-	@Override
-	public void updateJugador(List<Integer> combinacionJugador) {
-		// TODO Auto-generated method stub
+
+	public void Show() {
+		System.out.println("Combinación ganadora: " + this.combGandora);
+		System.out.println("Cantidad de personas que han acertado 3: " + acertantes[0]);
+		System.out.println("Cantidad de personas que han acertado 4: " + acertantes[1]);
+		System.out.println("Cantidad de personas que han acertado 5: " + acertantes[2]);
+		System.out.println("Cantidad de personas que han acertado 6: " + acertantes[3]);
 		
 	}
 
-	public void Show() {
-		// TODO Auto-generated method stub
+
+	@Override
+	public void updateJugador(int aciertosJugador) {
+		switch(aciertosJugador) {
+			case 3: 
+				acertantes[0]++;
+				break;
+			case 4:
+				acertantes[1]++;
+				break;
+			case 5:
+				acertantes[2]++;
+				break;
+			case 6:
+				acertantes[3]++;
+			}
 		
 	}
 

@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Jugador implements ObserverLoteriaPrimitiva, Subject{
+public class Jugador implements ObserverLoteriaPrimitiva, SubjectPeriodico{
 	private String nombre;
 	private List<Integer> combinacion;
-	private ArrayList<ObserverLoteriaPrimitiva> observers;
+	private ObserverJugador observer;
 	
-
 
 	public Jugador(String nombre, List<Integer> combinacion) {
 		this.nombre = nombre;
 		this.combinacion = combinacion;
-		this.observers = new ArrayList<ObserverLoteriaPrimitiva>();
+		this.observer = null;
 	}
 	
 	public int numeroAciertos(List<Integer> combinacionGanadora) {
@@ -30,27 +29,25 @@ public class Jugador implements ObserverLoteriaPrimitiva, Subject{
 	@Override
 	public void updateLoteria(List<Integer> combinacionGanadora) {
 		int aciertos = numeroAciertos(combinacionGanadora);
-		System.out.println("Soy " + nombre + ", \t aciertos: " + aciertos + ",\t combinación: " + combinacion);
+		//System.out.println("Soy " + nombre + ", \t aciertos: " + aciertos + ",\t combinación: " + combinacion);
+		notifyObservers(aciertos);
+	}
+
+	@Override
+	public void registerObserver(ObserverJugador o) {
+		this.observer = o;
 		
 	}
 
 	@Override
-	public void registerObserver(ObserverLoteriaPrimitiva o) {
-		// TODO Auto-generated method stub
+	public void removeObserver(ObserverJugador o) {
+		this.observer = null;
 		
 	}
 
 	@Override
-	public void removeObserver(ObserverLoteriaPrimitiva o) {
-		// TODO Auto-generated method stub
-		
+	public void notifyObservers(int aciertos) {
+		observer.updateJugador(aciertos); 
 	}
 
-	@Override
-	public void notifyObservers() {
-		for (int i = 0; i < observers.size(); i++) {
-			ObserverLoteriaPrimitiva observer = (ObserverLoteriaPrimitiva)observers.get(i);
-			//observer.update(); 
-		} 
-	}
 }

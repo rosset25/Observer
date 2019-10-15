@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class LoteriaPrimitiva implements Subject{
+public class LoteriaPrimitiva implements SubjectJugador{
 	private List<Integer> combinacionGanadora;
 	private ArrayList<ObserverLoteriaPrimitiva> observersLoteria;
 	
@@ -26,7 +26,7 @@ public class LoteriaPrimitiva implements Subject{
 		}
 		
 		// [27, 48, 33, 47, 18, 43]
-		System.out.println("La combinación ganadora es: " + combinacionGanadora);
+		//System.out.println("La combinación ganadora es: " + combinacionGanadora);
 		this.notifyObservers();
 	}
 

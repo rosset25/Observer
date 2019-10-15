@@ -16,8 +16,7 @@ public class Main {
 		int num;
 		Jugador jugador;
 		
-		
-		for( int i = 0; i < 800; i++) {
+		for( int i = 0; i < 1000000; i++) {
 			combJug = new ArrayList<Integer>();
 			while(combJug.size() < 6) {
 				 num = generator.nextInt(50);
@@ -28,11 +27,8 @@ public class Main {
 			
 			jugador = new Jugador ("Player" + i, combJug);	
 			jugadores.add(jugador);
-			
 		}
 		
-		
-	
 			 	
 		// el periodico se registra a la loteria (IMPORTANTE: primero que nadie)
 		loteria.registerObserver(periodico);
